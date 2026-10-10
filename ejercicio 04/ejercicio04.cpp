@@ -415,8 +415,7 @@ void mostrarResultado(const string& nombre,
 
 // MOSTRAR LISTA DE ADYACENCIA DEL GRAFO ORIGINAL
 void mostrarListaAdyacencia(const Grafo& g) {
-    cout << "\n========== LISTA DE ADYACENCIA ==========\n";
-
+    cout << "\n—-------------- LISTA DE ADYACENCIA —------------\n";
     for (int u = 0; u < g.n; u++) {
         cout << "Vertice " << u << " -> [";
 
@@ -435,7 +434,7 @@ void mostrarListaAdyacencia(const Grafo& g) {
 
 // MOSTRAR MATRIZ DE ADYACENCIA DEL GRAFO ORIGINAL
 void mostrarMatrizAdyacencia(const Grafo& g) {
-    cout << "\n         MATRIZ DE ADYACENCIA          \n";
+    cout << "\n------------------ MATRIZ DE ADYACENCIA -----------------\n";
 
     cout << setw(5) << " ";
 
