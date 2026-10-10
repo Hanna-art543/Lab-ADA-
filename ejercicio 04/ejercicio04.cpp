@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -16,10 +15,7 @@ using namespace chrono;
 
 const int INF = 1e9;
 
-// ==================================================
 // ESTRUCTURAS
-// ==================================================
-
 struct Arista {
     int u, v, peso;
 };
@@ -55,9 +51,7 @@ struct Grafo {
     }
 };
 
-// ==================================================
 // GENERACION DEL GRAFO ALEATORIO
-// ==================================================
 
 Grafo generarGrafo(int n, mt19937& rng) {
     Grafo g(n);
@@ -87,10 +81,7 @@ Grafo generarGrafo(int n, mt19937& rng) {
     return g;
 }
 
-// ==================================================
 // UNION-FIND: UTILIZADO POR KRUSKAL
-// ==================================================
-
 struct UnionFind {
     vector<int> padre, rango;
 
@@ -127,10 +118,7 @@ struct UnionFind {
     }
 };
 
-// ==================================================
 // KRUSKAL CON LISTA DE ADYACENCIA
-// ==================================================
-
 Resultado kruskalLista(const Grafo& g, bool trazar = false) {
     vector<Arista> aristas;
 
@@ -187,10 +175,7 @@ Resultado kruskalLista(const Grafo& g, bool trazar = false) {
     return r;
 }
 
-// ==================================================
 // KRUSKAL CON MATRIZ DE ADYACENCIA
-// ==================================================
-
 Resultado kruskalMatriz(const Grafo& g, bool trazar = false) {
     vector<Arista> aristas;
 
@@ -249,10 +234,7 @@ Resultado kruskalMatriz(const Grafo& g, bool trazar = false) {
     return r;
 }
 
-// ==================================================
 // PRIM CON LISTA DE ADYACENCIA
-// ==================================================
-
 Resultado primLista(const Grafo& g, bool trazar = false) {
     Resultado r;
 
@@ -315,10 +297,7 @@ Resultado primLista(const Grafo& g, bool trazar = false) {
     return r;
 }
 
-// ==================================================
 // PRIM CON MATRIZ DE ADYACENCIA
-// ==================================================
-
 Resultado primMatriz(const Grafo& g, bool trazar = false) {
     Resultado r;
 
@@ -391,10 +370,7 @@ Resultado primMatriz(const Grafo& g, bool trazar = false) {
     return r;
 }
 
-// ==================================================
 // MEDICION DEL TIEMPO
-// ==================================================
-
 template <typename Funcion>
 Resultado medirTiempo(Funcion funcion) {
     auto inicio = steady_clock::now();
@@ -409,10 +385,7 @@ Resultado medirTiempo(Funcion funcion) {
     return r;
 }
 
-// ==================================================
 // MOSTRAR RESULTADOS
-// ==================================================
-
 void mostrarAristas(const Resultado& r) {
     for (const auto& a : r.aristas) {
         cout << "(" << a.u << " - " << a.v
@@ -440,10 +413,7 @@ void mostrarResultado(const string& nombre,
          << (r.conectado ? "Si" : "No") << "\n";
 }
 
-// ==================================================
 // MOSTRAR LISTA DE ADYACENCIA DEL GRAFO ORIGINAL
-// ==================================================
-
 void mostrarListaAdyacencia(const Grafo& g) {
     cout << "\n========== LISTA DE ADYACENCIA ==========\n";
 
@@ -463,12 +433,9 @@ void mostrarListaAdyacencia(const Grafo& g) {
     }
 }
 
-// ==================================================
 // MOSTRAR MATRIZ DE ADYACENCIA DEL GRAFO ORIGINAL
-// ==================================================
-
 void mostrarMatrizAdyacencia(const Grafo& g) {
-    cout << "\n========== MATRIZ DE ADYACENCIA ==========\n";
+    cout << "\n         MATRIZ DE ADYACENCIA          \n";
 
     cout << setw(5) << " ";
 
@@ -489,14 +456,11 @@ void mostrarMatrizAdyacencia(const Grafo& g) {
     cout << "Nota: 0 significa que no existe una arista.\n";
 }
 
-// ==================================================
 // MOSTRAR RECORRIDO DE CADA ALGORITMO
-// ==================================================
-
 void mostrarRecorrido(const string& nombre,
                       const Resultado& r) {
-    cout << "\n========== RECORRIDO: "
-         << nombre << " ==========\n";
+    cout << "\n------------- RECORRIDO: "
+         << nombre << " ---------------\n";
 
     for (int i = 0; i < (int)r.recorrido.size(); i++) {
         cout << i + 1 << ". "
@@ -510,10 +474,7 @@ void mostrarRecorrido(const string& nombre,
          << r.pesoTotal << "\n";
 }
 
-// ==================================================
 // PROGRAMA PRINCIPAL
-// ==================================================
-
 int main() {
     random_device rd;
     mt19937 rng(rd());
@@ -531,15 +492,12 @@ int main() {
     // Generar un unico grafo para los cuatro algoritmos.
     Grafo g = generarGrafo(n, rng);
 
-    cout << "\n========== GRAFO GENERADO ==========\n";
+    cout << "\n--------------- GRAFO GENERADO --------------\n";
     cout << "Vertices: " << n << "\n";
     cout << "Aristas: " << g.aristas.size() << "\n";
     cout << "Pesos aleatorios: entre 1 y 100\n";
 
-    // ==================================================
     // MEDIR TIEMPOS SIN IMPRIMIR NI REGISTRAR RECORRIDOS
-    // ==================================================
-
     Resultado kl = medirTiempo([&]() {
         return kruskalLista(g);
     });
@@ -556,11 +514,8 @@ int main() {
         return primMatriz(g);
     });
 
-    // ==================================================
     // RESULTADOS
-    // ==================================================
-
-    cout << "\n========== RESULTADOS ==========\n";
+    cout << "\n--------------- RESULTADOS ----------------\n";
 
     mostrarResultado(
         "1. Kruskal - Lista de adyacencia", kl
@@ -578,11 +533,8 @@ int main() {
         "4. Prim - Matriz de adyacencia", pm
     );
 
-    // ==================================================
     // COMPARACION DE RESULTADOS
-    // ==================================================
-
-    cout << "\n========== COMPARACION ==========\n";
+    cout << "\n---------------- COMPARACION ----------------\n";
 
     bool correctos = kl.conectado &&
                      km.conectado &&
@@ -615,28 +567,19 @@ int main() {
     cout << "Prim - Matriz:    "
          << pm.tiempoMs << " ms\n";
 
-    // ==================================================
     // REPRESENTACIONES DEL GRAFO ORIGINAL: UNA SOLA VEZ
-    // ==================================================
-
     mostrarListaAdyacencia(g);
     mostrarMatrizAdyacencia(g);
 
-    // ==================================================
     // CALCULAR RECORRIDOS FUERA DE LA MEDICION
-    // ==================================================
-
     Resultado klPasos = kruskalLista(g, true);
     Resultado kmPasos = kruskalMatriz(g, true);
 
     Resultado plPasos = primLista(g, true);
     Resultado pmPasos = primMatriz(g, true);
 
-    // ==================================================
     // MOSTRAR RECORRIDOS
-    // ==================================================
-
-    cout << "\n========== RECORRIDOS DE LOS ALGORITMOS ==========\n";
+    cout << "\n----------------- RECORRIDOS DE LOS ALGORITMOS ---------------n";
 
     mostrarRecorrido(
         "KRUSKAL - LISTA DE ADYACENCIA", klPasos

@@ -1,0 +1,49 @@
+
+# Ejecutables compilados
+*.exe
+*.out
+*.o
+*.obj
+*.dll
+*.so
+*.a
+
+# Archivos de depuracion
+*.pdb
+*.ilk
+*.dSYM/
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Archivos de respaldo y registros
+*.log
+*.cache
+
+# Configuracion local de editores
+.vscode/
+.idea/
+*.code-workspace
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Carpetas de compilacion
+build/
+bin/
+obj/
+out/
+
+# Archivos generados por CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
